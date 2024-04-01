@@ -54,7 +54,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-//        dd(preg_match('/\W/u', "1!"));
+
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'integer',  'unique:users'],
@@ -80,7 +80,6 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-
        $user =  User::create([
             'name' => $data['name'],
             'phone' => $data['phone'],
@@ -92,7 +91,8 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
-            new PhoneService($user->id);
+
+            new PhoneService($user);
 
     }
 
